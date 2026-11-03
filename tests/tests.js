@@ -44,6 +44,7 @@ test('品項：價格與整箱', () => eq([items[0].price, items[0].casePrice, i
 test('品項：漲跌', () => eq(items.map(i => i.change), [20, -30, 0]));
 test('品項：不填價格顯示詢價', () => eq(items[2].price, null));
 test('品項：格式化度數容量', () => eq([items[1].abv, items[1].volume], ['38度', '600ml']));
+test('標籤欄', () => eq(rowsToItems(parseCSV('品名,標籤\nA,熱賣\nB,')).map(i => i.tag), ['熱賣', '']));
 test('分類順序', () => eq(categoriesOf(items), ['經典系列', '紀念酒']));
 
 test('欄位順序可以不同、可以用別名', () => {

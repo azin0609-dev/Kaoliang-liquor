@@ -166,7 +166,7 @@ function itemHtml(item) {
     <li class="item${item.statusKind === 'out' ? ' is-out' : ''}">
       <div class="item-main">
         <h3 class="item-name">${esc(item.name)}</h3>
-        <div class="specs">${specs}<span class="tag tag-${item.statusKind}">${esc(item.status)}</span></div>
+        <div class="specs">${item.tag ? `<span class="tag tag-hot">🔥 ${esc(item.tag)}</span>` : ''}${specs}<span class="tag tag-${item.statusKind}">${esc(item.status)}</span></div>
         ${item.note ? `<p class="item-note">${esc(item.note)}</p>` : ''}
       </div>
       <div class="item-price">${price}${change}${casePrice}</div>
@@ -217,6 +217,15 @@ function render() {
 // ---------- 聯絡、分享、年齡確認 ----------
 const PHONE_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>';
 const CHAT_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s6-3.5 8.2-6.1C21.5 14.2 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>';
+
+function setupShipping() {
+  const list = Array.isArray(CONFIG.shipping) ? CONFIG.shipping : [];
+  $('ship-list').innerHTML = list.map(s => `
+    <li><span>${esc(s.name)}　<small>${esc(s.time || '')}</small></span><b>每件 $${formatPrice(s.price)}</b></li>`).join('');
+  $('ship-note').textContent = CONFIG.shippingNote || '';
+  $('ship-note').hidden = !CONFIG.shippingNote;
+  $('shipping').hidden = !list.length;
+}
 
 function setupContact() {
   const btns = [];
@@ -277,7 +286,18 @@ function setupAgeGate() {
 }
 
 // ---------- 啟動 ----------
+function formatUpdated(value) {
+  const m = String(value || '').match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  return m ? `${Number(m[2])}/${Number(m[3])}` : String(value || '');
+}
+
 function applyConfig() {
+  const updated = formatUpdated(CONFIG.priceUpdated);
+  $('price-date').textContent = updated ? `價格更新：${updated}` : '';
+  $('price-date').hidden = !updated;
+  $('price-note').textContent = CONFIG.priceNote || '';
+  $('price-note').hidden = !CONFIG.priceNote;
+  $('price-info').hidden = !updated && !CONFIG.priceNote;
   $('shop-name').textContent = CONFIG.shopName;
   $('page-title').textContent = CONFIG.title;
   document.title = `${CONFIG.shopName}｜${CONFIG.title}`;
@@ -313,6 +333,7 @@ function bindEvents() {
 }
 
 applyConfig();
+setupShipping();
 setupContact();
 setupAgeGate();
 bindEvents();
