@@ -6,7 +6,7 @@ export const CONFIG = {
   title: '金門高粱酒即時報價',
 
   // 頁面上方的公告（不需要就改成 ''）
-  notice: '目前顯示的是範例價格，正式報價整理中。',
+  notice: '',
 
   // 價格來源：Google 試算表的「共用連結」或「發布到網路」連結
   // 留空 '' 就使用專案裡的 data/prices.csv
