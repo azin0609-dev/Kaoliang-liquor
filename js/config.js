@@ -25,7 +25,7 @@ export const CONFIG = {
 
   // 聯絡方式（留空就不顯示該按鈕）
   phone: '',     // 例：'0912-345-678'
-  lineUrl: 'https://line.me/ti/p/R0-j_5ehjV',
+  lineUrl: 'https://line.me/ti/p/H2HExhU0mA',
   // 寄送方式（不需要就改成 []）
   shipping: [
     { name: '海運', price: 150, time: '約 4～5 天到貨' },
