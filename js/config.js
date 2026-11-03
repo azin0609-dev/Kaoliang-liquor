@@ -21,5 +21,12 @@ export const CONFIG = {
   // 聯絡方式（留空就不顯示該按鈕）
   phone: '',     // 例：'0912-345-678'
   lineUrl: 'https://line.me/ti/p/R0-j_5ehjV',
+  // 寄送方式（不需要就改成 []）
+  shipping: [
+    { name: '海運', price: 150, time: '約 4～5 天到貨' },
+    { name: '空運', price: 280, time: '約 1～2 天到貨' },
+  ],
+  shippingNote: '運費以「件」計算。標示「整箱含運價」的酒款已含運費。',
+
   contactNote: '價格會隨酒廠與市場調整，訂購前請先私訊確認。',
 };

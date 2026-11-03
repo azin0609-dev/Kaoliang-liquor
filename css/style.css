@@ -1,17 +1,20 @@
 /* 怡軒特產行 高粱酒報價：全部樣式（淺色／深色、手機優先） */
 
 :root {
-  --bg: #f6f1e8;
-  --surface: #fffdf9;
-  --surface-2: #efe7da;
-  --ink: #2a1e1a;
-  --muted: #776659;
-  --line: #e6dacb;
-  --brand: #8f1d22;
-  --brand-2: #6c1418;
-  --brand-ink: #fffaf2;
-  --gold: #c39a45;
-  --price: #8f1d22;
+  --bg: #f4f6f7;
+  --surface: #ffffff;
+  --surface-2: #e9eff5;
+  --ink: #1d2938;
+  --muted: #5d6a79;
+  --line: #d8e1ea;
+  --brand: #1f4e8c;
+  --brand-2: #163a6b;
+  --brand-ink: #ffffff;
+  --gold: #5b85bd;
+  --seal: #b5332b;
+  --seal-ink: #fff7f0;
+  --price: #1f4e8c;
+  --pattern: #1f4e8c;
   --up: #c62828;
   --up-bg: #fdeaea;
   --down: #1d7a3e;
@@ -20,12 +23,12 @@
   --in-bg: #e7f3eb;
   --low: #a35f00;
   --low-bg: #fbf0dc;
-  --out: #7d7570;
-  --out-bg: #eeeae6;
+  --out: #7d7a78;
+  --out-bg: #eeeceb;
   --pre: #2856a3;
   --pre-bg: #e7eefa;
   --line-green: #06c755;
-  --shadow: 0 1px 2px rgba(60, 30, 20, .06), 0 4px 14px rgba(60, 30, 20, .05);
+  --shadow: 0 1px 2px rgba(20, 40, 70, .05), 0 4px 14px rgba(20, 40, 70, .05);
   --radius: 14px;
   --serif: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
   --sans: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
@@ -34,17 +37,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15100e;
-    --surface: #211916;
-    --surface-2: #1b1412;
-    --ink: #f3e9df;
-    --muted: #b4a395;
-    --line: #3a2d28;
-    --brand: #7a181c;
-    --brand-2: #52100f;
-    --brand-ink: #fff4e6;
-    --gold: #d6b066;
-    --price: #ff8a7a;
+    --bg: #0f1620;
+    --surface: #17212d;
+    --surface-2: #1d2a39;
+    --ink: #e6edf5;
+    --muted: #9eadbf;
+    --line: #2a3a4d;
+    --brand: #2c5ea3;
+    --brand-2: #1f4778;
+    --brand-ink: #ffffff;
+    --gold: #7fa8e0;
+    --seal: #c0453c;
+    --seal-ink: #fff7f0;
+    --price: #9cc1f2;
+    --pattern: #7fa8e0;
     --up: #ff6b6b;
     --up-bg: #3d1a1a;
     --down: #52c47c;
@@ -95,12 +101,37 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
 
 /* ---------- 標題列 ---------- */
 .masthead {
-  background:
-    radial-gradient(120% 140% at 100% 0%, rgba(255, 210, 140, .16), transparent 55%),
-    linear-gradient(160deg, var(--brand), var(--brand-2));
-  color: var(--brand-ink);
-  padding: calc(18px + env(safe-area-inset-top)) 0 20px;
-  border-bottom: 3px solid var(--gold);
+  position: relative;
+  background: var(--surface);
+  color: var(--price);
+  padding: calc(18px + env(safe-area-inset-top)) 0 26px;
+  overflow: hidden;
+}
+/* 右側淡淡的青花海水紋 */
+.masthead::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 12px 45%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24' viewBox='0 0 48 24'%3E%3Cg fill='none' stroke='%231f4e8c' stroke-width='1'%3E%3Cpath d='M0 24a24 24 0 0 1 48 0M8 24a16 16 0 0 1 32 0M16 24a8 8 0 0 1 16 0M-24 12a24 24 0 0 1 48 0M-16 12a16 16 0 0 1 32 0M-8 12a8 8 0 0 1 16 0M24 12a24 24 0 0 1 48 0M32 12a16 16 0 0 1 32 0M40 12a8 8 0 0 1 16 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 48px 24px;
+  opacity: .13;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%);
+  mask-image: linear-gradient(90deg, transparent, #000 60%);
+  pointer-events: none;
+}
+/* 下緣回紋 */
+.masthead::after, .fret {
+  content: "";
+  display: block;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cpath d='M0 11H20M5 11V2H15V8H9V5H12' fill='none' stroke='%231f4e8c' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-size: 20px 12px;
+  opacity: .55;
+}
+.masthead::after { position: absolute; left: 0; right: 0; bottom: 4px; }
+.masthead-inner { position: relative; z-index: 1; }
+@media (prefers-color-scheme: dark) {
+  .masthead::before, .masthead::after, .fret { filter: invert(1) hue-rotate(180deg) brightness(1.4); }
 }
 
 .masthead-inner {
@@ -113,17 +144,17 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
   flex: none;
   width: 52px;
   height: 52px;
-  border: 2px solid var(--gold);
-  border-radius: 8px;
+  border-radius: 6px;
   display: grid;
   place-content: center;
   font-family: var(--serif);
   font-weight: 900;
   font-size: 19px;
   line-height: 1.05;
-  color: var(--gold);
-  background: rgba(0, 0, 0, .12);
-  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, .12);
+  color: var(--seal-ink);
+  background: var(--seal);
+  box-shadow: inset 0 0 0 2px var(--seal), inset 0 0 0 4px rgba(255, 255, 255, .55);
+  transform: rotate(-3deg);
 }
 .seal span { display: block; text-align: center; }
 
@@ -144,7 +175,7 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
   font-weight: 700;
   font-size: 15px;
   letter-spacing: .18em;
-  color: #f1d9a8;
+  color: var(--muted);
 }
 
 .icon-btn {
@@ -153,13 +184,13 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
   height: 44px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 240, 220, .35);
+  border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, .08);
-  color: var(--brand-ink);
+  background: var(--surface);
+  color: var(--brand);
   cursor: pointer;
 }
-.icon-btn:hover { background: rgba(255, 255, 255, .16); }
+.icon-btn:hover { background: var(--surface-2); }
 
 /* ---------- 更新狀態 ---------- */
 .status-row {
@@ -260,7 +291,7 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
   border-radius: 12px;
   color: var(--muted);
 }
-.search:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(195, 154, 69, .22); }
+.search:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(91, 133, 189, .22); }
 .search input {
   flex: 1;
   min-width: 0;
@@ -307,6 +338,7 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
 .group { margin-top: 10px; }
 
 .group-title {
+  font-family: var(--serif);
   display: flex;
   align-items: baseline;
   gap: 8px;
@@ -446,6 +478,20 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
 }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
+/* ---------- 寄送方式 ---------- */
+.shipping {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.shipping h2 { margin: 0 0 8px; font-family: var(--serif); font-size: 16px; color: var(--brand); }
+.ship-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.ship-list li { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.ship-list b { color: var(--price); font-variant-numeric: tabular-nums; }
+.ship-note { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+
 /* ---------- 聯絡 ---------- */
 .contact {
   position: sticky;
@@ -487,9 +533,9 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
 .footer {
   padding: 22px 0 calc(26px + env(safe-area-inset-bottom));
   background: var(--surface-2);
-  border-top: 1px solid var(--line);
   text-align: center;
 }
+.footer .fret { margin: -22px 0 18px; }
 .legal-warning {
   margin: 0;
   font-size: 19px;
@@ -538,15 +584,15 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
   background: var(--surface);
   text-align: center;
   box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
-  border-top: 4px solid var(--gold);
+  border-top: 4px solid var(--brand);
 }
 .seal-lg {
   width: 64px;
   height: 64px;
   font-size: 23px;
   margin: 0 auto 12px;
-  background: var(--brand);
-  color: var(--gold);
+  background: var(--seal);
+  color: var(--seal-ink);
 }
 .age-card h2 { margin: 0 0 8px; font-size: 20px; }
 .age-card p { margin: 0; color: var(--muted); font-size: 15px; }
