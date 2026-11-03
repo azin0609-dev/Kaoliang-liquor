@@ -1,6 +1,6 @@
 // 自動檢查：CSV 解析、價格整理、試算表連結轉換
 import { parseCSV } from '../js/csv.js';
-import { rowsToItems, parsePrice, formatAbv, formatVolume, formatPrice, matchesQuery, categoriesOf, sheetCsvUrl } from '../js/prices.js';
+import { safeImage, rowsToItems, parsePrice, formatAbv, formatVolume, formatPrice, matchesQuery, categoriesOf, sheetCsvUrl } from '../js/prices.js';
 
 const results = [];
 function test(name, fn) {
@@ -45,6 +45,9 @@ test('品項：漲跌', () => eq(items.map(i => i.change), [20, -30, 0]));
 test('品項：不填價格顯示詢價', () => eq(items[2].price, null));
 test('品項：格式化度數容量', () => eq([items[1].abv, items[1].volume], ['38度', '600ml']));
 test('標籤欄', () => eq(rowsToItems(parseCSV('品名,標籤\nA,熱賣\nB,')).map(i => i.tag), ['熱賣', '']));
+test('圖片欄只接受安全路徑', () => eq(
+  ['images/a.webp', 'https://x.com/a.png', '', 'javascript:alert(1)', '../a.png', '/a.png', 'a.txt'].map(safeImage),
+  ['images/a.webp', 'https://x.com/a.png', '', '', '', '', '']));
 test('分類順序', () => eq(categoriesOf(items), ['經典系列', '紀念酒']));
 
 test('欄位順序可以不同、可以用別名', () => {
