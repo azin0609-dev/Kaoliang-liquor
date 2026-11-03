@@ -2,7 +2,7 @@
 
 給朋友隨時查看高粱酒價格的網頁。手機、電腦都能開，也可以「加到主畫面」當 App 用。
 
-- 網址（開通後）：https://azin0609-dev.github.io/Kaoliang-liquor/
+- 網址：https://yixuan-kinmen.github.io/
 - 傳到 LINE 會自動顯示店名和預覽圖
 
 ---
@@ -63,7 +63,7 @@
 
 1. 把這個分支的修改合併到 `main`（在 GitHub 的 Pull request 按「Merge」）
 2. 儲存庫 →「Settings」→ 左邊「Pages」→「Branch」選 `main`、資料夾 `/ (root)` →「Save」
-3. 約 1～2 分鐘後打開 https://azin0609-dev.github.io/Kaoliang-liquor/
+3. 約 1～2 分鐘後打開 https://yixuan-kinmen.github.io/
 
 ## 本機預覽（改版前先看看）
 

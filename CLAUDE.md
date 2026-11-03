@@ -67,8 +67,8 @@ start.bat、tools/       本機預覽伺服器（port 8001）
 
 ## 部署
 
-- 儲存庫：https://github.com/azin0609-dev/Kaoliang-liquor
-- 網站：https://azin0609-dev.github.io/Kaoliang-liquor/（Settings → Pages → `main` / root）
+- 儲存庫：https://github.com/yixuan-kinmen/yixuan-kinmen.github.io
+- 網站：https://yixuan-kinmen.github.io/（組織 yixuan-kinmen 底下，Settings → Pages → `main` / root；2026-11-03 從 azin0609-dev/Kaoliang-liquor 搬過來，舊網址已失效）
 - 改完 `git add -A` → `git commit` → `git push`，約 1～2 分鐘自動更新
 - commit 用 GitHub 匿名 Email（`<id>+azin0609-dev@users.noreply.github.com`）
 
