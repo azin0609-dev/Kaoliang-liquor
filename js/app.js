@@ -149,8 +149,10 @@ function priceUnit(item) {
 
 function itemHtml(item) {
   const specs = [item.abv, item.volume].filter(Boolean).map(s => `<span class="spec">${esc(s)}</span>`).join('');
-  const price = item.price !== null
-    ? `<div class="price"><span class="cur">$</span>${formatPrice(item.price)}<span class="unit">${priceUnit(item)}</span></div>`
+  // 只有整箱價時，整箱價當主要價格
+  const caseOnly = item.price === null && item.casePrice !== null;
+  const price = item.price !== null || caseOnly
+    ? `<div class="price"><span class="cur">$</span>${formatPrice(caseOnly ? item.casePrice : item.price)}<span class="unit">${caseOnly ? '/箱' : priceUnit(item)}</span></div>`
     : '<div class="price ask">請私訊詢價</div>';
   let change = '';
   if (item.change) {
@@ -159,7 +161,7 @@ function itemHtml(item) {
     change = `<span class="change ${up ? 'up' : 'down'}" title="比上次${up ? '漲' : '降'} ${amount} 元">${up ? '▲' : '▼'} ${amount}</span>`;
   }
   const perCase = item.perCase ? ` ${item.perCase} 瓶` : '';
-  const casePrice = item.casePrice !== null ? `<div class="case">整箱${perCase} <b>$${formatPrice(item.casePrice)}</b></div>` : '';
+  const casePrice = item.casePrice !== null && !caseOnly ? `<div class="case">整箱${perCase} <b>$${formatPrice(item.casePrice)}</b></div>` : '';
   return `
     <li class="item${item.statusKind === 'out' ? ' is-out' : ''}">
       <div class="item-main">
