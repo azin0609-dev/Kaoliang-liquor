@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>怡軒特產行｜金門高粱酒即時報價</title>
+  <meta name="description" content="怡軒特產行的金門高粱酒最新價格，隨時更新，訂購前請私訊確認。">
+  <!-- 預設不讓搜尋引擎收錄，只有拿到連結的人看得到；想被 Google 搜尋到就刪掉這一行 -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#8f1d22">
+
+  <!-- 在 LINE／Facebook 分享連結時顯示的預覽卡片 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="怡軒特產行｜金門高粱酒即時報價">
+  <meta property="og:description" content="金門高粱酒最新價格，隨時更新。訂購前請私訊確認。">
+  <meta property="og:url" content="https://azin0609-dev.github.io/Kaoliang-liquor/">
+  <meta property="og:image" content="https://azin0609-dev.github.io/Kaoliang-liquor/icons/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_TW">
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&text=%E6%80%A1%E8%BB%92%E7%89%B9%E7%94%A2%E8%A1%8C%E9%87%91%E9%96%80%E9%AB%98%E7%B2%B1%E9%85%92%E5%8D%B3%E6%99%82%E5%A0%B1%E5%83%B9&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <div class="seal" aria-hidden="true"><span>怡</span><span>軒</span></div>
+      <div class="masthead-text">
+        <h1 class="shop" id="shop-name">怡軒特產行</h1>
+        <p class="subtitle" id="page-title">金門高粱酒即時報價</p>
+      </div>
+      <button class="icon-btn" id="share-btn" type="button" aria-label="分享這個網頁">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="status-row">
+      <p class="status" id="status" aria-live="polite">讀取價格中…</p>
+      <button class="refresh-btn" id="refresh-btn" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+        重新整理
+      </button>
+    </div>
+
+    <p class="notice" id="notice" hidden></p>
+    <p class="warn" id="warn" hidden></p>
+
+    <div class="tools">
+      <label class="search">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="search" type="search" placeholder="搜尋品名、度數、容量" autocomplete="off" enterkeyhint="search">
+      </label>
+      <div class="chips" id="chips" role="tablist" aria-label="分類"></div>
+    </div>
+
+    <div id="list" class="list" aria-busy="true"></div>
+
+    <section class="contact" id="contact" hidden>
+      <p class="contact-note" id="contact-note"></p>
+      <div class="contact-btns" id="contact-btns"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="legal-warning">禁止酒駕　飲酒過量，有害健康</p>
+      <p class="legal-sub">未滿十八歲禁止飲酒</p>
+      <p class="fine">價格僅供參考，實際以私訊確認為準。本網頁只提供報價，不提供線上購買。</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <div class="age-gate" id="age-gate" hidden>
+    <div class="age-card" role="dialog" aria-modal="true" aria-labelledby="age-title">
+      <div class="seal seal-lg" aria-hidden="true"><span>怡</span><span>軒</span></div>
+      <h2 id="age-title">歡迎光臨怡軒特產行</h2>
+      <p>本頁內容為酒類商品報價。<br>依法未滿 18 歲不得飲酒，<br>請問您已年滿 18 歲嗎？</p>
+      <div class="age-btns">
+        <button type="button" class="btn btn-primary" id="age-yes">已滿 18 歲，進入</button>
+        <button type="button" class="btn btn-ghost" id="age-no">未滿 18 歲</button>
+      </div>
+      <p class="age-msg" id="age-msg" hidden>謝謝您的誠實，請滿 18 歲後再來看看喔！</p>
+      <p class="legal-warning small">禁止酒駕　飲酒過量，有害健康</p>
+    </div>
+  </div>
+
+  <noscript><p class="wrap">這個網頁需要開啟 JavaScript 才能顯示價格。</p></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
