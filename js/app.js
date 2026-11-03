@@ -163,7 +163,8 @@ function itemHtml(item) {
   const perCase = item.perCase ? ` ${item.perCase} 瓶` : '';
   const casePrice = item.casePrice !== null && !caseOnly ? `<div class="case">整箱${perCase} <b>$${formatPrice(item.casePrice)}</b></div>` : '';
   return `
-    <li class="item${item.statusKind === 'out' ? ' is-out' : ''}">
+    <li class="item${item.statusKind === 'out' ? ' is-out' : ''}${item.image ? ' has-img' : ''}">
+      ${item.image ? `<div class="item-img"><img src="${esc(item.image)}" alt="${esc(item.name)}" loading="lazy" decoding="async" width="160" height="240"></div>` : ''}
       <div class="item-main">
         <h3 class="item-name">${esc(item.name)}</h3>
         <div class="specs">${item.tag ? `<span class="tag tag-hot">🔥 ${esc(item.tag)}</span>` : ''}${specs}<span class="tag tag-${item.statusKind}">${esc(item.status)}</span></div>

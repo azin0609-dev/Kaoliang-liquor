@@ -13,6 +13,7 @@ const HEADER_ALIASES = {
   note: ['備註', '說明'],
   prevPrice: ['前次價格', '上次價格', '前次單瓶價', '原價'],
   tag: ['標籤', '標記'],
+  image: ['圖片', '照片'],
 };
 
 // 狀態 → 顯示樣式；「下架」「隱藏」的品項不顯示
@@ -67,6 +68,15 @@ export function formatVolume(value) {
   return /^\d+(?:\.\d+)?$/.test(s) ? `${s}ml` : s;
 }
 
+// 圖片只接受專案裡的相對路徑或 https 網址
+export function safeImage(value) {
+  const s = String(value ?? '').trim();
+  if (!s) return '';
+  if (/^https:\/\//.test(s)) return s;
+  if (/^[\w./-]+\.(webp|png|jpe?g|gif|svg)$/i.test(s) && !s.includes('..') && !s.startsWith('/')) return s;
+  return '';
+}
+
 export function formatPrice(n) {
   return Number(n).toLocaleString('en-US');
 }
@@ -107,6 +117,7 @@ export function rowsToItems(rows) {
       statusKind: statusKind(status),
       note: get(row, 'note'),
       tag: get(row, 'tag'),
+      image: safeImage(get(row, 'image')),
       prevPrice,
       change: price !== null && prevPrice !== null ? price - prevPrice : 0,
     });
