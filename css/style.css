@@ -252,6 +252,23 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
 .refresh-btn.spinning svg { animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+.price-info {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand);
+  border-radius: 12px;
+}
+.price-date {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--price);
+}
+.price-note { margin: 4px 0 0; font-size: 14px; color: var(--muted); line-height: 1.6; }
+
 .notice, .warn {
   margin: 0 0 12px;
   padding: 10px 14px;

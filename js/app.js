@@ -286,7 +286,18 @@ function setupAgeGate() {
 }
 
 // ---------- 啟動 ----------
+function formatUpdated(value) {
+  const m = String(value || '').match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  return m ? `${Number(m[2])}/${Number(m[3])}` : String(value || '');
+}
+
 function applyConfig() {
+  const updated = formatUpdated(CONFIG.priceUpdated);
+  $('price-date').textContent = updated ? `價格更新：${updated}` : '';
+  $('price-date').hidden = !updated;
+  $('price-note').textContent = CONFIG.priceNote || '';
+  $('price-note').hidden = !CONFIG.priceNote;
+  $('price-info').hidden = !updated && !CONFIG.priceNote;
   $('shop-name').textContent = CONFIG.shopName;
   $('page-title').textContent = CONFIG.title;
   document.title = `${CONFIG.shopName}｜${CONFIG.title}`;
