@@ -12,6 +12,7 @@ const HEADER_ALIASES = {
   status: ['狀態', '庫存'],
   note: ['備註', '說明'],
   prevPrice: ['前次價格', '上次價格', '前次單瓶價', '原價'],
+  tag: ['標籤', '標記'],
 };
 
 // 狀態 → 顯示樣式；「下架」「隱藏」的品項不顯示
@@ -105,6 +106,7 @@ export function rowsToItems(rows) {
       status,
       statusKind: statusKind(status),
       note: get(row, 'note'),
+      tag: get(row, 'tag'),
       prevPrice,
       change: price !== null && prevPrice !== null ? price - prevPrice : 0,
     });
@@ -121,7 +123,7 @@ export function categoriesOf(items) {
 export function matchesQuery(item, query) {
   const words = String(query ?? '').toLowerCase().split(/\s+/).filter(Boolean);
   if (!words.length) return true;
-  const hay = [item.category, item.name, item.abv, item.volume, item.status, item.note]
+  const hay = [item.category, item.name, item.abv, item.volume, item.status, item.note, item.tag]
     .join(' ')
     .toLowerCase();
   return words.every(w => hay.includes(w));

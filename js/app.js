@@ -166,7 +166,7 @@ function itemHtml(item) {
     <li class="item${item.statusKind === 'out' ? ' is-out' : ''}">
       <div class="item-main">
         <h3 class="item-name">${esc(item.name)}</h3>
-        <div class="specs">${specs}<span class="tag tag-${item.statusKind}">${esc(item.status)}</span></div>
+        <div class="specs">${item.tag ? `<span class="tag tag-hot">🔥 ${esc(item.tag)}</span>` : ''}${specs}<span class="tag tag-${item.statusKind}">${esc(item.status)}</span></div>
         ${item.note ? `<p class="item-note">${esc(item.note)}</p>` : ''}
       </div>
       <div class="item-price">${price}${change}${casePrice}</div>

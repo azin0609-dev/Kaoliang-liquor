@@ -400,6 +400,7 @@ main.wrap { flex: 1; display: flex; flex-direction: column; }
 }
 .spec { background: var(--surface-2); color: var(--ink); font-weight: 600; }
 
+.tag-hot { background: var(--seal); color: var(--seal-ink); }
 .tag-in { background: var(--in-bg); color: var(--in); }
 .tag-low { background: var(--low-bg); color: var(--low); }
 .tag-out { background: var(--out-bg); color: var(--out); }
