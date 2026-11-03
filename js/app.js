@@ -144,7 +144,7 @@ function renderChips() {
 }
 
 function priceUnit(item) {
-  return /盒/.test(item.name + item.category) ? '/盒' : '/瓶';
+  return /禮盒/.test(item.name + item.category) ? '/盒' : '/瓶';
 }
 
 function itemHtml(item) {
