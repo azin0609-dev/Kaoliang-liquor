@@ -20,6 +20,6 @@ export const CONFIG = {
 
   // 聯絡方式（留空就不顯示該按鈕）
   phone: '',     // 例：'0912-345-678'
-  lineUrl: '',   // 例：'https://line.me/ti/p/~你的LINE ID'
+  lineUrl: 'https://line.me/ti/p/R0-j_5ehjV',
   contactNote: '價格會隨酒廠與市場調整，訂購前請先私訊確認。',
 };
